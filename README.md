@@ -7,20 +7,28 @@ It is designed with **clean architecture**, proper **exception handling**, and s
 
 The goal of this project is to demonstrate **core Java skills** along with **DevOps-oriented application design**.
 
+```mermaid
+flowchart TD
+    A[Developer<br/>Local Machine]
+    -->|Git Commit & Push|
+    B[GitHub Repository]
+
+    B --> C[Maven Build<br/>Ubuntu Environment]
+
+    C --> D[Run Unit Tests]
+
+    D --> E[Build Artifact Ready<br/>JAR File]
+
+    E --> F[Manual Execution<br/>or Future CI/CD Automation]
+
+
+
 ---
 
-##  CI/CD Architecture Diagram
-
-flowchart TD
-    A[Developer<br/>Local Machine] -->|Git Commit & Push| B[GitHub Repository]
-    B --> C[Maven Build<br/>Ubuntu Environment]
-    C --> D[Run Unit Tests]
-    D --> E[Build Artifact Ready<br/>JAR File]
-    E --> F[Manual Deployment<br/>or Future CI/CD Steps]
-
 ## 🧱 Project Structure
-text
-Copy code
+
+```md
+```text
 java-bank-cicd-devops
 ├── src
 │   └── main
@@ -35,6 +43,7 @@ java-bank-cicd-devops
 ├── pom.xml
 ├── .gitignore
 └── README.md
+
 
 
 ✅ TECH STACK & FEATURES (THIRD SECTION)
