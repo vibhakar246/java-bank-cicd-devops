@@ -6,7 +6,8 @@ This project is a **menu-driven Java Banking Application** developed using **Jav
 It is designed with **clean architecture**, proper **exception handling**, and structured in a way that makes it **ready for Dockerization and CI/CD automation** using Jenkins.
 
 The goal of this project is to demonstrate **core Java skills** along with **DevOps-oriented application design**.
-## 🔁 CI/CD Pipeline Flow Diagram
+
+## 🔁 CI Pipeline Flow Diagram
 
 ```mermaid
 flowchart TD
@@ -16,13 +17,6 @@ flowchart TD
     D --> E[Build Artifact Ready - JAR]
     E --> F[Manual Run or Future Automation]
 
-
----
-
-## 🧱 Project Structure
-
-```md
-```text
 java-bank-cicd-devops
 ├── src
 │   └── main
@@ -32,6 +26,7 @@ java-bank-cicd-devops
 │                   └── hk
 │                       ├── BankApp.java
 │                       ├── Account.java
+│                       ├── AccountService.java
 │                       ├── BankService.java
 │                       └── exceptions
 ├── pom.xml
