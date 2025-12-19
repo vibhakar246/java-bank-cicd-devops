@@ -9,32 +9,50 @@ The goal of this project is to demonstrate **core Java skills** along with **Dev
 
 ---
 
-## 🛠 Tech Stack
-- **Java 17 (LTS)**
-- **Maven**
-- **Linux (Ubuntu)**
-- **Git & GitHub**
-- **Docker** *(CI/CD phase – upcoming)*
-- **Jenkins** *(CI/CD phase – upcoming)*
+##  CI/CD Architecture Diagram
 
----
+flowchart TD
+    A[Developer<br/>Local Machine] -->|Git Commit & Push| B[GitHub Repository]
+    B --> C[Maven Build<br/>Ubuntu Environment]
+    C --> D[Run Unit Tests]
+    D --> E[Build Artifact Ready<br/>JAR File]
+    E --> F[Manual Deployment<br/>or Future CI/CD Steps]
+
+## 🧱 Project Structure
+text
+Copy code
+java-bank-cicd-devops
+├── src
+│   └── main
+│       └── java
+│           └── com
+│               └── nit
+│                   └── hk
+│                       ├── BankApp.java
+│                       ├── Account.java
+│                       ├── BankService.java
+│                       └── exceptions
+├── pom.xml
+├── .gitignore
+└── README.md
+
+
+✅ TECH STACK & FEATURES (THIRD SECTION)
+
+
+## 🛠 Tech Stack
+- Java 17 (LTS)
+- Maven
+- Git & GitHub
+- Linux (Ubuntu)
+- Jenkins *(CI/CD – upcoming)*
+- Docker *(Containerization – upcoming)*
+
 
 ## ✨ Features
-- Deposit money into an account
-- Withdraw money with balance validation
-- Check current account balance
-- Custom exception handling for invalid operations
-- Modular and clean code structure
-
----
-
-CI/CD Architecture Diagram
-flowchart TD
-    A[Developer<br/>Local Machine] -->|Git Push| B[GitHub Repository]
-    B -->|Webhook Trigger| C[Jenkins CI Server]
-    C --> D[Maven Build & Tests]
-    D --> E[Docker Image Build]
-    E --> F[Docker Compose]
-    F --> G[Java Banking Application]
-
+- Deposit money
+- Withdraw money
+- Check account balance
+- Custom exception handling
+- Clean, modular architecture
 
