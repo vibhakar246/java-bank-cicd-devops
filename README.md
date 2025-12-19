@@ -38,20 +38,3 @@ flowchart TD
     F --> G[Java Banking Application]
 
 
-## 🧱 Project Structure
-```text
-java-bank-cicd-devops
-├── src
-│   └── main
-│       └── java
-│           └── com
-│               └── nit
-│                   └── hk
-│                       ├── BankApp.java
-│                       ├── Account.java
-│                       ├── BankService.java
-│                       └── exceptions
-├── pom.xml
-├── .gitignore
-└── README.md
-
