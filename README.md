@@ -28,6 +28,16 @@ The goal of this project is to demonstrate **core Java skills** along with **Dev
 
 ---
 
+CI/CD Architecture Diagram
+flowchart TD
+    A[Developer<br/>Local Machine] -->|Git Push| B[GitHub Repository]
+    B -->|Webhook Trigger| C[Jenkins CI Server]
+    C --> D[Maven Build & Tests]
+    D --> E[Docker Image Build]
+    E --> F[Docker Compose]
+    F --> G[Java Banking Application]
+
+
 ## 🧱 Project Structure
 ```text
 java-bank-cicd-devops
@@ -45,12 +55,3 @@ java-bank-cicd-devops
 ├── .gitignore
 └── README.md
 
-
-CI/CD Architecture Diagram
-flowchart TD
-    A[Developer<br/>Local Machine] -->|Git Push| B[GitHub Repository]
-    B -->|Webhook Trigger| C[Jenkins CI Server]
-    C --> D[Maven Build & Tests]
-    D --> E[Docker Image Build]
-    E --> F[Docker Compose]
-    F --> G[Java Banking Application]
