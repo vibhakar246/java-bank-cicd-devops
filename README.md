@@ -6,22 +6,16 @@ This project is a **menu-driven Java Banking Application** developed using **Jav
 It is designed with **clean architecture**, proper **exception handling**, and structured in a way that makes it **ready for Dockerization and CI/CD automation** using Jenkins.
 
 The goal of this project is to demonstrate **core Java skills** along with **DevOps-oriented application design**.
+## 🔁 CI/CD Pipeline Flow Diagram
 
 ```mermaid
 flowchart TD
-    A[Developer<br/>Local Machine]
-    -->|Git Commit & Push|
-    B[GitHub Repository]
-
-    B --> C[Maven Build<br/>Ubuntu Environment]
-
+    A[Developer - Local Machine] -->|Git Commit & Push| B[GitHub Repository]
+    B --> C[Maven Build on Ubuntu]
     C --> D[Run Unit Tests]
+    D --> E[Build Artifact Ready - JAR]
+    E --> F[Manual Run or Future Automation]
 
-    D --> E[Build Artifact Ready<br/>JAR File]
-
-    E --> F[Manual Execution<br/>or Future CI/CD Automation]
-yaml
-Copy code
 
 ---
 
