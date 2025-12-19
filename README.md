@@ -20,8 +20,8 @@ flowchart TD
     D --> E[Build Artifact Ready<br/>JAR File]
 
     E --> F[Manual Execution<br/>or Future CI/CD Automation]
-
-
+yaml
+Copy code
 
 ---
 
@@ -43,7 +43,6 @@ java-bank-cicd-devops
 ├── pom.xml
 ├── .gitignore
 └── README.md
-
 
 
 ✅ TECH STACK & FEATURES (THIRD SECTION)
