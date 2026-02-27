@@ -1,210 +1,224 @@
-📌 Overview
-This project is a menu-driven Java Banking Application developed using Java 17 (LTS) and Maven.
-It is designed with clean architecture, proper exception handling, and is structured in a way that makes it ready for Dockerization and CI/CD automation using Jenkins.
-graph TB
-    %% Developer Section
-    subgraph "Developer Environment"
-        Dev[👨‍💻 Developer<br/>Local Machine]
-        IDE[💻 IDE / VS Code]
-        Git[📦 Git Push]
-    end
-    
-    %% Source Control
-    subgraph "Source Control"
-        GitHub[🐙 GitHub Repository]
-        Webhook[🔄 Webhook Trigger]
-    end
-    
-    %% CI/CD Pipeline
-    subgraph "CI/CD Pipeline - Jenkins"
-        Jenkins[🤖 Jenkins Server]
-        Build[🔨 Maven Build]
-        Test[✅ Run Unit Tests]
-        Package[📦 Package JAR]
-        DockerBuild[🐳 Docker Build]
-        Push[📤 Push to Registry]
-        Deploy[🚀 Deploy to Server]
-    end
-    
-    %% Application Core
-    subgraph "Banking Application Core"
-        BankApp[🏦 BankApp.java<br/>Main Class]
-        Account[💳 Account.java<br/>Account Model]
-        Service[⚙️ AccountService.java<br/>Business Logic]
-        BankService[🏛️ BankService.java<br/>Bank Operations]
-        Exceptions[⚠️ Custom Exceptions<br/>InsufficientBalance<br/>InvalidAmount<br/>AccountNotFound]
-    end
-    
-    %% Application Features
-    subgraph "Application Features"
-        Deposit[💰 Deposit Money]
-        Withdraw[💸 Withdraw Money]
-        Balance[📊 Check Balance]
-        Create[➕ Create Account]
-        Delete[❌ Delete Account]
-        List[📋 List All Accounts]
-    end
-    
-    %% Tech Stack
-    subgraph "Technology Stack"
-        Java[☕ Java 17 LTS]
-        Maven[📁 Maven]
-        JUnit[🧪 JUnit 5]
-        Linux[🐧 Linux/Ubuntu]
-        Docker[🐳 Docker]
-        Jenkins[⚙️ Jenkins]
-    end
-    
-    %% DevOps Tools
-    subgraph "DevOps Infrastructure"
-        DockerHub[☁️ Docker Hub]
-        Server[🌐 Production Server]
-        Monitor[📊 Monitoring]
-    end
-    
-    %% Connections
-    Dev --> IDE
-    IDE --> Git
-    Git --> GitHub
-    GitHub --> Webhook
-    Webhook --> Jenkins
-    
-    Jenkins --> Build
-    Build --> Test
-    Test --> Package
-    Package --> DockerBuild
-    DockerBuild --> Push
-    Push --> Deploy
-    
-    Push --> DockerHub
-    Deploy --> Server
-    Server --> Monitor
-    
-    %% Application Structure
-    BankApp --> Account
-    BankApp --> Service
-    Service --> BankService
-    Service --> Exceptions
-    
-    %% Features Connection
-    BankApp --> Deposit
-    BankApp --> Withdraw
-    BankApp --> Balance
-    BankApp --> Create
-    BankApp --> Delete
-    BankApp --> List
-    
-    %% Tech Stack Support
-    Java --> BankApp
-    Maven --> Build
-    JUnit --> Test
-    Linux --> Server
-    Docker --> DockerBuild
-    Jenkins --> Jenkins
+# 🏦 Java Banking Application – CI/CD DevOps Project 🚀
 
+---
+
+## 📌 Overview
+
+This project is a **menu-driven Java Banking Application** developed using **Java 17 (LTS)** and **Maven**.
+
+It follows a clean modular architecture with proper exception handling and is structured to be fully ready for:
+
+- 🐳 Docker containerization  
+- 🤖 Jenkins CI/CD automation  
+- 🧪 Unit testing integration  
+- 🚀 Production deployment  
+
+This project demonstrates both **Core Java skills** and **DevOps engineering practices**.
+
+---
+
+# 🏗️ 1️⃣ Complete DevOps Architecture
+
+```mermaid
+flowchart TB
+
+subgraph "Developer Environment"
+    Dev[Developer - Local Machine]
+    IDE[IDE / VS Code]
+    Git[Git Push]
+end
+
+subgraph "Source Control"
+    GitHub[GitHub Repository]
+    Webhook[Webhook Trigger]
+end
+
+subgraph "CI/CD Pipeline - Jenkins"
+    Jenkins[Jenkins Server]
+    Build[Maven Build]
+    Test[Run Unit Tests]
+    Package[Package JAR]
+    DockerBuild[Docker Build]
+    Push[Push to Registry]
+    Deploy[Deploy to Server]
+end
+
+subgraph "DevOps Infrastructure"
+    DockerHub[Docker Hub]
+    Server[Production Server]
+    Monitor[Monitoring]
+end
+
+Dev --> IDE --> Git --> GitHub --> Webhook --> Jenkins
+Jenkins --> Build --> Test --> Package --> DockerBuild --> Push --> Deploy
+Push --> DockerHub
+Deploy --> Server --> Monitor
+```
+
+---
+
+# 🏦 2️⃣ Application Architecture
+
+```mermaid
 flowchart TD
-    subgraph "Banking Operations"
-        Start[🏁 Launch Application] --> Menu[📱 Display Main Menu]
-        Menu --> Choice{User Choice}
-        
-        Choice -->|1| Create[➕ Create Account]
-        Choice -->|2| Dep[💰 Deposit Money]
-        Choice -->|3| With[💸 Withdraw Money]
-        Choice -->|4| Bal[📊 Check Balance]
-        Choice -->|5| List[📋 List All Accounts]
-        Choice -->|6| Del[❌ Delete Account]
-        Choice -->|7| Exit[👋 Exit Application]
-        
-        Create --> Menu
-        Dep --> Menu
-        With --> Menu
-        Bal --> Menu
-        List --> Menu
-        Del --> Menu
-        Exit --> End[✅ Application Closed]
-    end
-    
-    subgraph "Exception Handling"
-        Error[⚠️ Error Occurs] --> Handle{Catch Block}
-        Handle -->|Invalid Amount| IA[❌ InvalidAmountException]
-        Handle -->|Insufficient Balance| IB[❌ InsufficientBalanceException]
-        Handle -->|Account Not Found| ANF[❌ AccountNotFoundException]
-        IA --> Message[📢 Show Error Message]
-        IB --> Message
-        ANF --> Message
-        Message --> Menu
-    end
 
-graph LR
-    subgraph "Stage 1: Source"
-        A[📝 Code Commit] --> B[🌿 GitHub Push]
-    end
-    
-    subgraph "Stage 2: Build"
-        B --> C[🔨 Maven Compile]
-        C --> D[📦 Package JAR]
-    end
-    
-    subgraph "Stage 3: Test"
-        D --> E[🧪 Run Unit Tests]
-        E --> F{Tests Passed?}
-        F -->|No| G[❌ Send Alert]
-        G --> A
-    end
-    
-    subgraph "Stage 4: Package"
-        F -->|Yes| H[🐳 Build Docker Image]
-        H --> I[📤 Push to Docker Hub]
-    end
-    
-    subgraph "Stage 5: Deploy"
-        I --> J[🚀 Deploy to Server]
-        J --> K[✅ Health Check]
-    end
+subgraph "Banking Application Core"
+    BankApp[BankApp.java - Main]
+    Account[Account.java - Model]
+    Service[AccountService.java - Logic]
+    BankService[BankService.java - Operations]
+    Exceptions[Custom Exceptions]
+end
 
-graph TD
-    subgraph "Unit Test Suite"
-        T1[✅ testDeposit_ValidAmount] --> R[📊 Test Results]
-        T2[✅ testDeposit_InvalidAmount] --> R
-        T3[✅ testWithdraw_ValidAmount] --> R
-        T4[✅ testWithdraw_InsufficientBalance] --> R
-        T5[✅ testCreateAccount_Valid] --> R
-        T6[✅ testFindAccount_Exists] --> R
-        T7[✅ testFindAccount_NotFound] --> R
-    end
-    
-    R --> Summary[📈 Coverage: 92%<br/>Tests: 24/24 Passed]
-    
-   flowchart LR
-    subgraph "Version 2.0 Roadmap"
-        V1[📱 REST API Layer] --> V2[💾 Database Integration]
-        V2 --> V3[🔐 Spring Security]
-        V3 --> V4[☁️ Cloud Deployment]
-        V4 --> V5[📊 Monitoring & Logging]
-    end
-=== Banking Application Menu ===
-1. Create Account
-2. Deposit Money
-3. Withdraw Money
-4. Check Balance
-5. List All Accounts
-6. Delete Account
-7. Exit
+subgraph "Application Features"
+    Deposit[Deposit Money]
+    Withdraw[Withdraw Money]
+    Balance[Check Balance]
+    Create[Create Account]
+    Delete[Delete Account]
+    List[List All Accounts]
+end
 
-Enter your choice: 1
+BankApp --> Account
+BankApp --> Service
+Service --> BankService
+Service --> Exceptions
 
-=== Create Account ===
-Enter Account Number: ACC001
-Enter Account Holder Name: John Doe
-Enter Initial Deposit: 5000
+BankApp --> Deposit
+BankApp --> Withdraw
+BankApp --> Balance
+BankApp --> Create
+BankApp --> Delete
+BankApp --> List
+```
 
-✅ Account created successfully!
+---
 
-=== Banking Application Menu ===
-Enter your choice: 4
+# 🔁 3️⃣ CI/CD Pipeline Stages
 
-=== Check Balance ===
-Enter Account Number: ACC001
-Current Balance: ₹5000
-    
-    
+```mermaid
+flowchart LR
+
+A[Code Commit] --> B[GitHub Push]
+
+subgraph "Build Stage"
+    B --> C[Maven Compile]
+    C --> D[Package JAR]
+end
+
+subgraph "Test Stage"
+    D --> E[Run Unit Tests]
+    E --> F{Tests Passed?}
+    F -->|No| G[Send Alert]
+    G --> A
+end
+
+subgraph "Docker & Deploy"
+    F -->|Yes| H[Build Docker Image]
+    H --> I[Push to Docker Hub]
+    I --> J[Deploy to Server]
+    J --> K[Health Check]
+end
+```
+
+---
+
+# 📱 4️⃣ Application Flow (Menu Driven System)
+
+```mermaid
+flowchart TD
+
+Start[Launch Application] --> Menu[Display Main Menu]
+Menu --> Choice{User Choice}
+
+Choice -->|1| Create
+Choice -->|2| Deposit
+Choice -->|3| Withdraw
+Choice -->|4| Balance
+Choice -->|5| List
+Choice -->|6| Delete
+Choice -->|7| Exit
+
+Create --> Menu
+Deposit --> Menu
+Withdraw --> Menu
+Balance --> Menu
+List --> Menu
+Delete --> Menu
+Exit --> End[Application Closed]
+```
+
+---
+
+# ⚠ 5️⃣ Exception Handling Flow
+
+```mermaid
+flowchart TD
+
+Error[Error Occurs] --> Handle{Catch Block}
+
+Handle -->|Invalid Amount| IA[InvalidAmountException]
+Handle -->|Insufficient Balance| IB[InsufficientBalanceException]
+Handle -->|Account Not Found| ANF[AccountNotFoundException]
+
+IA --> Message[Show Error Message]
+IB --> Message
+ANF --> Message
+
+Message --> Menu[Return to Menu]
+```
+
+---
+
+# 🧪 6️⃣ Unit Testing Overview
+
+```mermaid
+flowchart TD
+
+subgraph "Unit Test Suite"
+    T1[testDeposit_ValidAmount]
+    T2[testDeposit_InvalidAmount]
+    T3[testWithdraw_ValidAmount]
+    T4[testWithdraw_InsufficientBalance]
+    T5[testCreateAccount_Valid]
+    T6[testFindAccount_Exists]
+    T7[testFindAccount_NotFound]
+end
+
+T1 --> R[Test Results]
+T2 --> R
+T3 --> R
+T4 --> R
+T5 --> R
+T6 --> R
+T7 --> R
+
+R --> Summary[Coverage 92% - 24/24 Tests Passed]
+```
+
+---
+
+# 🛠 Tech Stack
+
+- ☕ Java 17 (LTS)  
+- 📦 Maven  
+- 🧪 JUnit 5  
+- 🐧 Linux / Ubuntu  
+- 🐳 Docker  
+- 🤖 Jenkins  
+- 🐙 GitHub  
+
+---
+
+# 🚀 Project Highlights
+
+- Clean modular architecture  
+- CI/CD ready design  
+- Docker-ready structure  
+- Automated unit testing  
+- DevOps pipeline integration  
+- Production deployment capable  
+
+---
+
+💡 This project represents a complete **Java + DevOps integration workflow**
