@@ -5,78 +5,86 @@
 This project is a **menu-driven Java Banking Application** developed using **Java 17 (LTS)** and **Maven**.  
 It is designed with **clean architecture**, proper **exception handling**, and is structured in a way that makes it **ready for Dockerization and CI/CD automation** using Jenkins.
 
-## 🏦 Java Banking Application – Complete DevOps Overview
 
 ```mermaid
 flowchart TD
 
-    %% =========================
-    %% CI/CD PIPELINE
-    %% =========================
-    subgraph CI_CD_Pipeline
+    %% =============================
+    %% DEVELOPER
+    %% =============================
+    subgraph Developer
         A[Developer - Local Machine]
+    end
+
+    %% =============================
+    %% CI/CD PIPELINE
+    %% =============================
+    subgraph CI_CD_Pipeline
         B[GitHub Repository]
-        C[Maven Build - Ubuntu]
+        C[Maven Build]
         D[Run Unit Tests]
         E[Build Artifact - JAR]
-        F[Manual Run / Future Automation]
-
-        A -->|Git Push| B
-        B --> C
-        C --> D
-        D --> E
-        E --> F
     end
 
-    %% =========================
-    %% APPLICATION STRUCTURE
-    %% =========================
-    subgraph Application_Core
-        G[BankApp.java]
-        H[Account.java]
-        I[AccountService.java]
-        J[BankService.java]
-        K[Custom Exceptions]
-
-        G --> H
-        G --> I
-        G --> J
-        J --> K
+    %% =============================
+    %% APPLICATION CORE
+    %% =============================
+    subgraph Banking_Application
+        F[BankApp.java]
+        G[Account.java]
+        H[AccountService.java]
+        I[BankService.java]
+        J[Custom Exceptions]
     end
 
-    %% =========================
+    %% =============================
     %% TECH STACK
-    %% =========================
+    %% =============================
     subgraph Tech_Stack
-        L[Java 17 LTS]
-        M[Maven]
-        N[Linux Ubuntu]
-        O[Jenkins - Upcoming]
-        P[Docker - Upcoming]
+        K[Java 17 LTS]
+        L[Maven]
+        M[Linux Ubuntu]
+        N[Jenkins - Upcoming]
+        O[Docker - Upcoming]
     end
 
-    %% =========================
+    %% =============================
     %% FEATURES
-    %% =========================
+    %% =============================
     subgraph Application_Features
-        Q[Deposit Money]
-        R[Withdraw Money]
-        S[Check Balance]
-        T[Exception Handling]
-        U[Modular Architecture]
+        P[Deposit Money]
+        Q[Withdraw Money]
+        R[Check Balance]
+        S[Exception Handling]
+        T[Modular Architecture]
     end
 
-    %% Linking Stack to Core
-    L --> G
-    M --> C
-    N --> C
-    O --> B
-    P --> E
+    %% =============================
+    %% MAIN FLOW (TOP TO BOTTOM)
+    %% =============================
+    A -->|Git Push| B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
 
-    %% Linking Features to Core
-    G --> Q
-    G --> R
-    G --> S
-    G --> T
-    G --> U
+    %% Core Internal Flow
+    F --> G
+    F --> H
+    F --> I
+    I --> J
+
+    %% Stack Supporting App
+    K --> F
+    L --> C
+    M --> C
+    N --> B
+    O --> E
+
+    %% Features from Core
+    F --> P
+    F --> Q
+    F --> R
+    F --> S
+    F --> T
 ```
